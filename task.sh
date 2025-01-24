@@ -3,10 +3,9 @@
 DB_USER="backup"
 DB_PASSWORD="1111"
 DB_NAME="ShopDB"
-BACKUP_FILE="shopdb_backup.sql"
 
-mysqldump -u $DB_USER -p$DB_PASSWORD $DB_NAME > $BACKUP_FILE
-mysql -u $DB_USER -p$DB_PASSWORD "ShopDBReserve" < $BACKUP_FILE
+mysqldump -u $DB_USER -p $DB_PASSWORD --databases $DB_NAME  --result-file=shopdb_backup.sql
+mysqldump -u $DB_USER -p $DB_PASSWORD --databases $DB_NAME --no-create-info  --result-file=shopdb_data_backup.sql
 
-mysqldump -u $DB_USER -p$DB_PASSWORD --no-create-info $DB_NAME > $BACKUP_FILE
-mysql -u $DB_USER -p$DB_PASSWORD "ShopDBDevelopment" < $BACKUP_FILE
+mysql -u $DB_USER -p$DB_PASSWORD ShopDBReserve < shopdb_backup.sql
+mysql -u $DB_USER -p$DB_PASSWORD ShopDBDevelopment < shopdb_data_backup.sql
