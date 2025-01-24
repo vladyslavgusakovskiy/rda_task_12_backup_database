@@ -1,7 +1,7 @@
 #! /bin/bash
 
-DB_USER="backup"
-DB_PASSWORD="1111"
+DB_USER=$DB_USER
+DB_PASSWORD=$DB_PASSWORD
 DB_NAME="ShopDB"
 
 mysqldump -u $DB_USER -p $DB_PASSWORD --databases $DB_NAME  --result-file=shopdb_backup.sql
